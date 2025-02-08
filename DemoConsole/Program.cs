@@ -4,7 +4,7 @@ using System.IO.Abstractions;
 using DemoConsole;
 
 Logger logger = new Logger(new FileSystem());
-Timer timer = new(callback, null, 0, 2000);
+Timer timer = new(callback, null, 0, 1000);
 ActualWork work = new(logger);
 await work.Process();
 
