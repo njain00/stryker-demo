@@ -1,14 +1,16 @@
+using System.IO.Abstractions;
+
 namespace DemoConsole;
 
-public class Logger : ILogger
+public class Logger(IFileSystem fileSystem) : ILogger
 {
-    public async Task Log(string message)
+    public virtual async Task Log(string message)
     {
         string path = "/home/nishant/Documents/workspace/dotnet-playground/StrykerDemo/logfile.txt";
 
         if (!File.Exists(path))
         {
-            using (StreamWriter sw = File.CreateText(path))
+            using (StreamWriter sw = fileSystem.File.CreateText(path))
             {
                 await sw.WriteLineAsync(message);
             }
@@ -16,7 +18,7 @@ public class Logger : ILogger
             return;
         }
 
-        using (StreamWriter sw = File.AppendText(path))
+        using (StreamWriter sw = fileSystem.File.AppendText(path))
         {
             await sw.WriteLineAsync(message);
         }
