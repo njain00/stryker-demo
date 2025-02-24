@@ -20,14 +20,14 @@ public class Act
         Assert.True(sw.ElapsedMilliseconds > 3995);
     }
 
-    // [Fact]
-    // public async Task Test_LogCalledDuringProcess()
-    // {
-    //     ActualWork work = new(loggerMock);
+    [Fact]
+    public async Task Test_LogCalledDuringProcess()
+    {
+        ActualWork work = new(loggerMock);
 
-    //     await work.Process(4, 1000);
-    //     await loggerMock.Received().Log(Arg.Any<string>());
-    // }
+        await work.Process(4, 1000);
+        await loggerMock.Received().Log(Arg.Any<string>());
+    }
 
     // [Fact]
     // public async Task Test_LogCalledSameNumberOfTimesAsIteration()
